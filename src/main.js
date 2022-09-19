@@ -57,13 +57,15 @@ async function uid2token(uid) {
     wx_open_id,
     avatar,
   } = await getOpenId(uid);
+
   const res = await axios.post(userLoginApi, {
     headers,
     "uid": wx_open_id,
     "nick_name": "1",
-    "avatar": avatar,
+    "avatar": avatar || "1",
     "sex": 1
   })
+
   return res.data.data.token
 }
 
