@@ -13,7 +13,11 @@ const headers = {
 }
 
 // 用户登录接口
-let user_login_api = "https://cat-match.easygame2021.com/sheep/v1/user/login_oppo";
+let userLoginApi = "https://cat-match.easygame2021.com/sheep/v1/user/login_oppo";
+// 获取用户信息
+let getUserInfoApi = (uid, temp_token) => `https://cat-match.easygame2021.com/sheep/v1/game/user_info?uid=${uid}&t=${temp_token}`
+// 过关地址
+let getWinApi = (rank_time, token) => `https://cat-match.easygame2021.com/sheep/v1/game/game_over?rank_score=1&rank_state=1&rank_time=${rank_time}&rank_role=1&skin=1&t=${token}`
 // 临时token
 let temp_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTQ1MzQxMzcsIm5iZiI6MTY2MzQzMTkzNywiaWF0IjoxNjYzNDMwMTM3LCJqdGkiOiJDTTpjYXRfbWF0Y2g6bHQxMjM0NTYiLCJvcGVuX2lkIjoiIiwidWlkIjoxMzU5Njk1MiwiZGVidWciOiIiLCJsYW5nIjoiIn0.rxNp69Cy_UmYZt1uzsGkIKFBOZehW3vXzo3kltJtybY"
 
@@ -43,7 +47,7 @@ async function main() {
       console.timeEnd("任务完成用时")
       return;
     }
-    sheep_win(token)
+    win(token)
   }, 500)
 }
 
@@ -53,7 +57,7 @@ async function uid2token(uid) {
     wx_open_id,
     avatar,
   } = await getOpenId(uid);
-  const res = await axios.post(user_login_api, {
+  const res = await axios.post(userLoginApi, {
     headers,
     "uid": wx_open_id,
     "nick_name": "1",
@@ -64,15 +68,18 @@ async function uid2token(uid) {
 }
 
 async function getOpenId(uid) {
-  const res = await axios.get(`https://cat-match.easygame2021.com/sheep/v1/game/user_info?uid=${uid}&t=${temp_token}`, {
+  const url = getUserInfoApi(uid, temp_token);
+  const res = await axios.get(url, {
     headers
   });
   return res.data.data;
 }
 
-function sheep_win(token) {
+
+function win(token) {
   const rank_time = Math.floor(Math.random() * 10000);
-  axios.get(`https://cat-match.easygame2021.com/sheep/v1/game/game_over?rank_score=1&rank_state=1&rank_time=${rank_time}&rank_role=1&skin=1&t=${token}`, {
+  const url = getWinApi(rank_time, token);
+  axios.get(url, {
     headers
   }).then(res => {
     ok++;
