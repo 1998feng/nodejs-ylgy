@@ -1,21 +1,12 @@
-> 介绍
+使用方法
 
-本项目旨在为你快速通关羊了个羊，请勿使用本程序恶意对游戏服务器持续造成压力，一切后果自负！！！若助力闯关成功动动发财的小手点右上角 Star 为我提供持续更新动力...
+安装依赖：npm i
 
-
-
-
-运行方法
-
-npm i
-
-npm run start uid 次数
+运行：npm run start uid 次数
 
 举例: npm run start 74875144 100
 
-
-
-
+![](C:\Users\fengjiandong\AppData\Roaming\Typora\typora-user-images\image-20220919112457025.png)
 
 ### 免责声明
 
