@@ -6,7 +6,7 @@
 
 举例: npm run start 74875144 100
 
-![](C:\Users\fengjiandong\AppData\Roaming\Typora\typora-user-images\image-20220919112457025.png)
+![image](https://user-images.githubusercontent.com/49889959/190945926-c761c631-d3da-4b3a-a946-a45df0c83bcd.png)
 
 ### 免责声明
 
