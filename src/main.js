@@ -24,7 +24,7 @@ async function main() {
   const count = process.argv[3];
   console.time("任务完成用时")
   console.log(`uid:${uid},通关次数:${count}`)
-  if (!uid) {
+  if (!uid || !count) {
     console.error("请使用 npm run start xxxxx(uid)")
     return;
   }
